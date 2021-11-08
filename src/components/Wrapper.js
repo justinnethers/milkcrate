@@ -1,6 +1,7 @@
 import React from 'react';
 import Albums from "./Albums";
 import {getAlbums, getFolders} from "../api";
+import Folders from "./Folders";
 
 export default class Wrapper extends React.Component {
     constructor(props) {
@@ -41,26 +42,15 @@ export default class Wrapper extends React.Component {
         });
     }
 
-    render() {
-        const {folders} = this.state;
-        const foldersList = folders.map(folder => {
-            return (
-                <button
-                    onClick={() => this.getFolderAlbums(folder.id)}
-                    className="bg-blue-900 text-blue-200 text-2xl p-2 rounded shadow w-48 hover:bg-blue-700"
-                >{folder.name}</button>
-            )
-        })
+    handleFoldersCallback = (value) => {
+        this.getFolderAlbums(value);
+    }
 
+    render() {
         return (
             <div className="h-100 p-4 lg:p-8">
                 <div className="flex">
-                    <div className="w-64 mt-4">
-                        <div className="space-y-4">
-                            <div className="text-4xl font-light">Folders</div>
-                            {foldersList}
-                        </div>
-                    </div>
+                    <Folders folders={this.state.folders} parentCallback={this.handleFoldersCallback} />
                     <Albums albums={this.state.albums} />
                 </div>
             </div>
