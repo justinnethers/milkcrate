@@ -11,17 +11,19 @@ export default class Folders extends React.Component {
             return (
                 <button
                     onClick={() => this.props.parentCallback(folder.id)}
-                    className="bg-blue-900 text-blue-200 text-2xl p-2 rounded shadow w-48 hover:bg-blue-700"
-                >{folder.name}</button>
+                    className="bg-blue-900 text-blue-200 font-light text-2xl p-2 rounded shadow w-48 hover:bg-blue-700"
+                >{folder.name} <span className="text-base font-thin">({folder.count})</span></button>
             )
         })
 
         return (
-            <div className="w-64 mt-4">
-                <div className="space-y-4">
-                    <div className="text-4xl font-light">Folders</div>
-                    {foldersList}
-                </div>
+            <div className="space-y-4">
+                <div className="text-4xl font-light">Folders</div>
+                {foldersList}
+                <button
+                    onClick={() => this.props.parentCallback("wantlist")}
+                    className="bg-blue-900 text-blue-200 text-2xl p-2 rounded shadow w-48 hover:bg-blue-700"
+                >Wantlist</button>
             </div>
         );
     }

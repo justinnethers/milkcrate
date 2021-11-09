@@ -9,22 +9,10 @@ export const getAlbums = (params) => {
     if (params?.folderId) {
         folderId = params.folderId;
     }
-    return client.listItemsInFolderForUser('justinnethers', folderId)
+    return client.listItemsInFolderForUser('justinnethers', folderId, {by:"artist"})
         .then(res => {
             console.log('res', res.releases);
-            let albums = res.releases.map(album => {
-                return {
-                    id: album.id,
-                    artist: album.basic_information.artists[0].name,
-                    title: album.basic_information.title,
-                    genre: album.basic_information.genres.join(", "),
-                    cover_image: album.basic_information.cover_image,
-                    label: album.basic_information.labels[0],
-                    year: album.basic_information.year,
-                }
-            });
-            console.log('albums', albums);
-            return albums;
+            return buildAlbumResponse(res.releases);
         });
 }
 
@@ -36,10 +24,11 @@ export const getFolders = (params) => {
         })
 }
 
-export const createFolder = (name) => {
-    return client.createFolder(name)
+export const getWantlist = () => {
+    return client.getWantlist()
         .then(res => {
-            console.log('createFolder', res);
+            console.log('wantlist', res);
+            return buildAlbumResponse(res.wants);
         });
 }
 
@@ -51,4 +40,18 @@ export const deleteAlbum = (params) => {
         .then(res => {
             return res;
         })
+}
+
+function buildAlbumResponse(data) {
+    return data.map(album => {
+        return {
+            id: album.id,
+            artist: album.basic_information.artists[0].name,
+            title: album.basic_information.title,
+            genre: album.basic_information.genres.join(", "),
+            cover_image: album.basic_information.cover_image,
+            label: album.basic_information.labels[0],
+            year: album.basic_information.year,
+        }
+    });
 }

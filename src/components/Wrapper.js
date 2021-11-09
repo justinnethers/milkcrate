@@ -1,6 +1,6 @@
 import React from 'react';
 import Albums from "./Albums";
-import {getAlbums, getFolders} from "../api";
+import {getAlbums, getFolders, getWantlist} from "../api";
 import Folders from "./Folders";
 
 export default class Wrapper extends React.Component {
@@ -42,7 +42,19 @@ export default class Wrapper extends React.Component {
         });
     }
 
+    async getWantlist() {
+        const albums = await getWantlist();
+        console.log('wantlist', albums);
+        this.setState({
+            albums: albums
+        });
+    }
+
     handleFoldersCallback = (value) => {
+        if (value === "wantlist") {
+            this.getWantlist();
+            return;
+        }
         this.getFolderAlbums(value);
     }
 
@@ -50,7 +62,9 @@ export default class Wrapper extends React.Component {
         return (
             <div className="h-100 p-4 lg:p-8">
                 <div className="flex">
-                    <Folders folders={this.state.folders} parentCallback={this.handleFoldersCallback} />
+                    <div className="mt-4">
+                        <Folders folders={this.state.folders} parentCallback={this.handleFoldersCallback} />
+                    </div>
                     <Albums albums={this.state.albums} />
                 </div>
             </div>
