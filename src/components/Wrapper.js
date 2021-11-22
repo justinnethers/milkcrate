@@ -1,13 +1,14 @@
 import React from 'react';
 import Albums from "./Albums";
-import {getAlbums, getFolders, getWantlist} from "../api";
+import {getFolders} from "../api";
 import Folders from "./Folders";
+import {Route, Routes} from "react-router-dom";
+import Wantlist from "./Wantlist";
 
 export default class Wrapper extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            albums: [],
             folders: [],
             filterText: ''
         }
@@ -15,15 +16,6 @@ export default class Wrapper extends React.Component {
 
     componentDidMount() {
         this.getFolders();
-        this.getAlbums();
-    }
-
-    async getAlbums() {
-        const albums = await getAlbums();
-        console.log('getAlbums', albums);
-        this.setState({
-            albums: albums
-        });
     }
 
     async getFolders() {
@@ -34,27 +26,7 @@ export default class Wrapper extends React.Component {
         });
     }
 
-    async getFolderAlbums(id) {
-        const albums = await getAlbums({folderId: id});
-        console.log('folderAlbums', albums);
-        this.setState({
-            albums: albums
-        });
-    }
-
-    async getWantlist() {
-        const albums = await getWantlist();
-        console.log('wantlist', albums);
-        this.setState({
-            albums: albums
-        });
-    }
-
     handleFoldersCallback = (value) => {
-        if (value === "wantlist") {
-            this.getWantlist();
-            return;
-        }
         this.getFolderAlbums(value);
     }
 
@@ -65,7 +37,28 @@ export default class Wrapper extends React.Component {
                     <div className="mt-4">
                         <Folders folders={this.state.folders} parentCallback={this.handleFoldersCallback} />
                     </div>
-                    <Albums albums={this.state.albums} />
+                    <Routes>
+                        <Route
+                            path="/"
+                            element={<Albums />}
+                        >
+                            {/*<Route*/}
+                            {/*    exact*/}
+                            {/*    path=":folder"*/}
+                            {/*    render={(props) => (*/}
+                            {/*        <Albums key={props.match.params.folder} {...props} />)}*/}
+                            {/*/>*/}
+                            <Route
+                                exact
+                                path=":folder"
+                                element={<Albums />}
+                            />
+                        </Route>
+                        <Route
+                            exact path="/wantlist"
+                            element={<Wantlist />}
+                        />
+                    </Routes>
                 </div>
             </div>
         );

@@ -1,5 +1,4 @@
 import React from 'react';
-import Albums from './components/Albums';
 import Wrapper from './components/Wrapper';
 
 function App() {
