@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+.active {
+    @apply text-gray-900;
+}
+
+.pager-link {
+    @apply bg-blue-600 text-white rounded-full flex justify-center items-center shadow block h-16 w-16 text-2xl font-light cursor-pointer;
+}
+
+.pager-link:hover {
+    @apply bg-blue-700;
+}
+
+.pager-link.active {
+    @apply text-white bg-blue-800;
+}
+
 .record {
     position: relative;
     margin: 19px auto;

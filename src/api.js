@@ -5,14 +5,16 @@ const client = new Discojs({
 });
 
 export const getAlbums = (params) => {
-    let folderId = 0;
-    if (params?.folderId) {
-        folderId = params.folderId;
-    }
-    return client.listItemsInFolderForUser('justinnethers', folderId, {by:"artist"})
+    const folder = params?.folderId ?? 0;
+    const page = params?.page ?? 1;
+    return client.listItemsInFolderForUser('justinnethers', folder, {by:"artist"}, {page: page, perPage: 50})
         .then(res => {
-            console.log('res', res.releases);
-            return buildAlbumResponse(res.releases);
+            console.log('res', res);
+            const albums = buildAlbumResponse(res.releases);
+            return {
+                pagination: res.pagination,
+                albums
+            };
         });
 }
 
