@@ -32,33 +32,29 @@ export default class Wrapper extends React.Component {
 
     render() {
         return (
-            <div className="h-100 p-4 lg:p-8">
-                <div className="flex">
-                    <div className="mt-4">
+            <div className="">
+                <div className="flex w-full">
+                    <div className="w-1/6">
                         <Folders folders={this.state.folders} parentCallback={this.handleFoldersCallback} />
                     </div>
-                    <Routes>
-                        <Route
-                            path="/"
-                            element={<Albums />}
-                        >
-                            {/*<Route*/}
-                            {/*    exact*/}
-                            {/*    path=":folder"*/}
-                            {/*    render={(props) => (*/}
-                            {/*        <Albums key={props.match.params.folder} {...props} />)}*/}
-                            {/*/>*/}
+                    <div className="flex-1">
+                        <Routes>
                             <Route
-                                exact
-                                path=":folder"
+                                path="/"
                                 element={<Albums />}
+                            >
+                                <Route
+                                    exact
+                                    path=":folder"
+                                    element={<Albums />}
+                                />
+                            </Route>
+                            <Route
+                                exact path="/wantlist"
+                                element={<Wantlist />}
                             />
-                        </Route>
-                        <Route
-                            exact path="/wantlist"
-                            element={<Wantlist />}
-                        />
-                    </Routes>
+                        </Routes>
+                    </div>
                 </div>
             </div>
         );

@@ -48,7 +48,7 @@ export default function Albums() {
         });
 
         pager = (
-            <div className="flex space-x-4 w-full justify-center mt-4 mb-8">{pages}</div>
+            <div className="flex space-x-4 w-full justify-center my-4">{pages}</div>
         )
     }
 
@@ -69,6 +69,7 @@ export default function Albums() {
     }
     return (
         <div className="h-100 px-4" key={folder}>
+            {pager}
             <div className="flex flex-wrap -mx-2 lg:-mx-4">
                 {albumList}
             </div>
