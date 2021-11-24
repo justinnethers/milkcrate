@@ -12,6 +12,7 @@ export default class Wantlist extends React.Component {
     }
 
     async componentDidMount() {
+        document.title = "My Wantlist";
         this.setState({loading: true});
         const wants = await getWantlist();
         console.log('wantlist', wants);

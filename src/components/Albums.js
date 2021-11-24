@@ -14,6 +14,7 @@ export default function Albums() {
 
     useEffect(() => {
         getAlbumsLocal();
+        document.title = "My Albums";
     }, [folder]);
 
     async function getAlbumsLocal(page = 1) {
