@@ -7,7 +7,7 @@ const client = new Discojs({
 export const getAlbums = (params) => {
     const folder = params?.folderId ?? 0;
     const page = params?.page ?? 1;
-    return client.listItemsInFolderForUser('justinnethers', folder, {by:"artist"}, {page: page, perPage: 50})
+    return client.listItemsInFolderForUser('justinnethers', folder, {by:"artist"}, {page: page, perPage: 100})
         .then(res => {
             console.log('res', res);
             const albums = buildAlbumResponse(res.releases);
@@ -54,6 +54,7 @@ function buildAlbumResponse(data) {
             cover_image: album.basic_information.cover_image,
             label: album.basic_information.labels[0],
             year: album.basic_information.year,
+            search: album.basic_information.artists[0].name + ' ' + album.basic_information.title
         }
     });
 }

@@ -8,6 +8,7 @@ export default function Albums() {
     const [albums, setAlbums] = useState([]);
     const [loading, setLoading] = useState(false);
     const [pagination, setPagination] = useState(false);
+    const [filterText, setFilterText] = useState('');
 
     const params = useParams();
     const folder = params.folder;
@@ -19,14 +20,32 @@ export default function Albums() {
 
     async function getAlbumsLocal(page = 1) {
         setLoading(true);
-        const {albums, pagination} = await getAlbums({folderId: folder ?? 0, page: page});
+        let {albums, pagination} = await getAlbums({folderId: folder ?? 0, page: page});
         console.log('getAlbums', albums);
         setAlbums(albums);
         setPagination(pagination);
         setLoading(false);
+        if (pagination.pages > 1) {
+            getRemainingAlbums(pagination.pages);
+        }
     }
 
-    const albumList = albums.map(album => {
+    async function getRemainingAlbums(pages) {
+        for (let page = 2; page < pages+1; page++) {
+            let {albums, pagination} = await getAlbums({folderId: folder ?? 0, page: page});
+            if (albums) {
+                setAlbums(oldAlbums => [...oldAlbums, ...albums]);
+            }
+        }
+    }
+
+    const albumList = albums.filter((album) => {
+        if (filterText) {
+            return album.search.toLowerCase().includes(filterText.toLowerCase());
+        } else {
+            return albums;
+        }
+    }).map(album => {
         return(
             <Album key={album._id} album={album} />
         )
@@ -70,11 +89,18 @@ export default function Albums() {
     }
     return (
         <div className="h-100 px-4" key={folder}>
-            {pager}
+            <div className="my-4">
+                <input
+                    placeholder="search collection..."
+                    className="w-full p-2 text-xl rounded shadow-inner"
+                    onChange={e => setFilterText(e.target.value)}
+                />
+            </div>
+            {/*{pager}*/}
             <div className="flex flex-wrap -mx-2 lg:-mx-4">
                 {albumList}
             </div>
-            {pager}
+            {/*{pager}*/}
         </div>
     );
 }
