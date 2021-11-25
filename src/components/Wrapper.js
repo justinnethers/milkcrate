@@ -26,16 +26,12 @@ export default class Wrapper extends React.Component {
         });
     }
 
-    handleFoldersCallback = (value) => {
-        this.getFolderAlbums(value);
-    }
-
     render() {
         return (
             <div className="">
                 <div className="flex w-full">
                     <div className="w-1/6">
-                        <Folders folders={this.state.folders} parentCallback={this.handleFoldersCallback} />
+                        <Folders folders={this.state.folders} />
                     </div>
                     <div className="flex-1">
                         <Routes>
