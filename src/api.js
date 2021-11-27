@@ -54,7 +54,7 @@ function buildAlbumResponse(data) {
             cover_image: album.basic_information.cover_image,
             label: album.basic_information.labels[0],
             year: album.basic_information.year,
-            search: album.basic_information.artists[0].name + ' ' + album.basic_information.title
+            search: album.basic_information.artists[0].name + ' ' + album.basic_information.title + ' ' + album.basic_information.genres.join(", ")
         }
     });
 }
