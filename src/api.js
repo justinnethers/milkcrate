@@ -18,6 +18,14 @@ export const getAlbums = (params) => {
         });
 }
 
+export const getAlbumRelease = (id) => {
+    return client.getRelease(id)
+        .then(res => {
+            console.log('album release', res);
+            return res;
+        })
+}
+
 export const getFolders = (params) => {
     return client.listFolders()
         .then(res => {
