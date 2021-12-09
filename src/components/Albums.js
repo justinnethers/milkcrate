@@ -3,12 +3,13 @@ import Album from "./Album";
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 
-export default function Albums() {
+export default function Albums(props) {
 
     const [albums, setAlbums] = useState([]);
     const [loading, setLoading] = useState(false);
     const [pagination, setPagination] = useState(false);
     const [filterText, setFilterText] = useState('');
+    const [randomAlbum, setRandomAlbum] = useState(false);
 
     const params = useParams();
     const folder = params.folder;
@@ -17,6 +18,14 @@ export default function Albums() {
         getAlbumsLocal();
         document.title = "My Albums";
     }, [folder]);
+
+    useEffect(() => {
+        if (props.randomize) {
+            setRandomAlbum(Math.floor(Math.random() * albums.length));
+        } else {
+            setRandomAlbum(false);
+        }
+    }, [props.randomize]);
 
     async function getAlbumsLocal(page = 1) {
         setLoading(true);
@@ -45,9 +54,9 @@ export default function Albums() {
         } else {
             return albums;
         }
-    }).map(album => {
+    }).map((album, index) => {
         return(
-            <Album key={album._id} album={album} />
+            <Album key={album._id} album={album} index={index} random={randomAlbum} open={index === randomAlbum} />
         )
     });
 

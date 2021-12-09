@@ -10,7 +10,8 @@ export default class Wrapper extends React.Component {
         super(props);
         this.state = {
             folders: [],
-            filterText: ''
+            filterText: '',
+            random: false
         }
     }
 
@@ -32,17 +33,23 @@ export default class Wrapper extends React.Component {
                 <div className="flex w-full">
                     <div className="w-1/6">
                         <Folders folders={this.state.folders} />
+                        <span
+                            className="p-4 text-white text-3xl font-light hover:text-gray-900 transition-all cursor-pointer"
+                            onClick={() => this.setState({random: Math.random()})}
+                        >
+                            <i className="las la-dice-d6"></i> Random Album
+                        </span>
                     </div>
                     <div className="flex-1">
                         <Routes>
                             <Route
                                 path="/"
-                                element={<Albums />}
+                                element={<Albums randomize={this.state.random} />}
                             >
                                 <Route
                                     exact
                                     path=":folder"
-                                    element={<Albums />}
+                                    element={<Albums randomize={this.state.random} />}
                                 />
                             </Route>
                             <Route

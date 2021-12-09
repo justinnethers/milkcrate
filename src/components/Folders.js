@@ -5,6 +5,20 @@ export default function Folders(props) {
 
     const {folders} = props;
     const foldersList = folders.map(folder => {
+        let icon = <span></span>;
+        if (folder.name === "Christmas") {
+            icon = (
+                <span>
+                    <i className="text-green-600 las la-holly-berry"></i>&nbsp;
+                </span>
+            );
+        } else {
+            icon = (
+                <span>
+                    <i className="text-black las la-record-vinyl"></i>&nbsp;
+                </span>
+            )
+        }
         return (
             <NavLink
                 // onClick={() => props.parentCallback(folder.id)}
@@ -13,7 +27,7 @@ export default function Folders(props) {
                 className="block hover:text-gray-900 transition-all"
             >
                 <div className="text-3xl font-light">
-                    {folder.name} <span className="text-xl">({folder.count})</span>
+                    {icon}{folder.name} <span className="text-xl">({folder.count})</span>
                 </div>
             </NavLink>
         )
@@ -28,7 +42,9 @@ export default function Folders(props) {
             <NavLink
                 to="/wantlist"
                 className="text-3xl font-light hover:text-gray-900 transition-all"
-            >Wantlist</NavLink>
+            >
+                <i className="las la-stream text-gray-800"></i> Wantlist
+            </NavLink>
         </div>
     );
 }

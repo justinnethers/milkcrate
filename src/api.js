@@ -31,7 +31,7 @@ export const getFolders = (params) => {
         .then(res => {
             console.log('folders', res.folders);
             return res.folders;
-        })
+        });
 }
 
 export const getWantlist = () => {
@@ -49,7 +49,7 @@ export const deleteAlbum = (params) => {
         .then(res => res.json())
         .then(res => {
             return res;
-        })
+        });
 }
 
 function buildAlbumResponse(data) {
