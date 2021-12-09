@@ -1,11 +1,11 @@
 import React from 'react';
-import {Link, NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 export default function Folders(props) {
 
     const {folders} = props;
     const foldersList = folders.map(folder => {
-        let icon = <span></span>;
+        let icon = '';
         if (folder.name === "Christmas") {
             icon = (
                 <span>
@@ -26,7 +26,13 @@ export default function Folders(props) {
                 key={folder.id}
                 className="block hover:text-gray-900 transition-all"
             >
-                <div className="text-3xl font-light">
+                <div
+                    className="text-3xl font-light"
+                    onClick={(event) => {
+                        props.callback();
+                        event.stopPropagation();
+                    }}
+                >
                     {icon}{folder.name} <span className="text-xl">({folder.count})</span>
                 </div>
             </NavLink>

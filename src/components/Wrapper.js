@@ -27,12 +27,18 @@ export default class Wrapper extends React.Component {
         });
     }
 
+    handleCallback = () => {
+        this.setState({
+            random: false
+        });
+    }
+
     render() {
         return (
             <div className="">
                 <div className="flex w-full">
                     <div className="w-1/6">
-                        <Folders folders={this.state.folders} />
+                        <Folders folders={this.state.folders} callback={this.handleCallback} />
                         <span
                             className="p-4 text-white text-3xl font-light hover:text-gray-900 transition-all cursor-pointer"
                             onClick={() => this.setState({random: Math.random()})}
