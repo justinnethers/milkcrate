@@ -1,6 +1,5 @@
 import React from 'react';
 import Albums from "./Albums";
-import {getFolders} from "../api";
 import Folders from "./Folders";
 import {Route, Routes} from "react-router-dom";
 import Wantlist from "./Wantlist";
@@ -14,18 +13,12 @@ export default class Wrapper extends React.Component {
         }
     }
 
-    handleCallback = () => {
-        this.setState({
-            random: false
-        });
-    }
-
     render() {
         return (
             <div className="">
                 <div className="flex w-full">
                     <div className="w-1/6">
-                        <Folders folders={this.state.folders} callback={this.handleCallback} />
+                        <Folders folders={this.state.folders} callback={() => this.setState({random:false})} />
                         <span
                             className="p-4 text-white text-3xl font-light hover:text-gray-900 transition-all cursor-pointer"
                             onClick={() => this.setState({random: Math.random()})}
