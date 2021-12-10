@@ -9,22 +9,9 @@ export default class Wrapper extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            folders: [],
             filterText: '',
             random: false
         }
-    }
-
-    componentDidMount() {
-        this.getFolders();
-    }
-
-    async getFolders() {
-        const folders = await getFolders();
-        console.log('getFolders', folders);
-        this.setState({
-            folders: folders
-        });
     }
 
     handleCallback = () => {

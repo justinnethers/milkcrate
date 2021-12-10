@@ -1,9 +1,30 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {NavLink} from "react-router-dom";
+import {getFolders} from "../api";
 
 export default function Folders(props) {
 
-    const {folders} = props;
+    const [folders, setFolders] = useState(JSON.parse(localStorage.getItem('folders')) ?? []);
+
+    useEffect(() => {
+
+        async function getFoldersLocal() {
+            let folders = await getFolders();
+            console.log('getFolders', folders);
+            setFolders(folders);
+            localStorage.setItem('folders', JSON.stringify(folders));
+        }
+
+        getFoldersLocal();
+
+    }, []);
+
+    if (!folders.length) {
+        return (
+            <span></span>
+        )
+    }
+    // const {folders} = props;
     const foldersList = folders.map(folder => {
         let icon = '';
         if (folder.name === "Christmas") {
