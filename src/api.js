@@ -1,13 +1,13 @@
 const {Discojs} = require("discojs");
 
 const client = new Discojs({
-    userToken: 'hbuQtCjCEpmkBLsECsuqPKCNnsHajJjTrbfPvgsA'
+    userToken: process.env.REACT_APP_DISCOGS_USERTOKEN
 });
 
 export const getAlbums = (params) => {
     const folder = params?.folderId ?? 0;
     const page = params?.page ?? 1;
-    return client.listItemsInFolderForUser('justinnethers', folder, {by:"artist"}, {page: page, perPage: 100})
+    return client.listItemsInFolderForUser(process.env.REACT_APP_DISCOGS_USERNAME, folder, {by:"artist"}, {page: page, perPage: 100})
         .then(res => {
             console.log('res', res);
             const albums = buildAlbumResponse(res.releases);
