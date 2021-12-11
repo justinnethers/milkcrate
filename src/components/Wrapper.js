@@ -15,18 +15,18 @@ export default class Wrapper extends React.Component {
 
     render() {
         return (
-            <div className="">
-                <div className="flex w-full">
-                    <div className="w-1/6">
+            <div className="flex flex-col h-full overflow-hidden">
+                <div className="flex w-full h-full">
+                    <div className="flex flex-col w-1/5">
                         <Folders folders={this.state.folders} callback={() => this.setState({random:false})} />
                         <span
-                            className="p-4 text-white text-3xl font-light hover:text-gray-900 transition-all cursor-pointer"
+                            className="absolute bottom-0 left-0 p-4 text-white text-3xl font-light hover:text-gray-900 transition-all cursor-pointer"
                             onClick={() => this.setState({random: Math.random()})}
                         >
                             <i className="las la-dice-d6"></i> Random Album
                         </span>
                     </div>
-                    <div className="flex-1">
+                    <div className="flex flex-col flex-1 overflow-y-auto">
                         <Routes>
                             <Route
                                 path="/"
