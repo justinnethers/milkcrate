@@ -62,7 +62,7 @@ export default function Album(props) {
                     onClick={() => setAlbum(false)}
                 >
                     <div
-                        className="bg-gray-900 w-full h-full overflow-auto rounded-lg shadow-lg p-4 md:p-12 text-white cursor-default"
+                        className="relative bg-gray-900 w-full h-full overflow-auto rounded-lg shadow-lg p-4 md:p-12 text-white cursor-default"
                         onClick={(e) => e.stopPropagation()}
                     >
                         <div className="">
@@ -72,6 +72,12 @@ export default function Album(props) {
                                     <div className="text-2xl md:text-5xl font-thin">{album.artists_sort}</div>
                                 </div>
                                 <div className="flex items-end flex-col">
+                                    <div
+                                        className="absolute top-0 right-0 p-2 cursor-pointer"
+                                        onClick={() => setAlbum(false)}
+                                    >
+                                        <i className="lar la-times-circle text-4xl transform transition-all hover:text-red-500"></i>
+                                    </div>
                                     <div className="md:text-4xl italic font-light">{album.labels[0].name}</div>
                                     <div className="md:text-3xl font-thin">{album.labels[0].catno} </div>
                                 </div>
