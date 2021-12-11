@@ -8,8 +8,17 @@ export default function Album(props) {
 
     async function getAlbumInfo() {
         setLoading(true);
-        const album = await getAlbumRelease(props.album.id);
-        setAlbum(album);
+
+        const localAlbum = JSON.parse(localStorage.getItem(props.album.id));
+        if (localAlbum) {
+            setAlbum(localAlbum);
+        }
+        else {
+            const album = await getAlbumRelease(props.album.id);
+            setAlbum(album);
+            localStorage.setItem(props.album.id, JSON.stringify(album));
+        }
+
         setLoading(false);
     }
 
