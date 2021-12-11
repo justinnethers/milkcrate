@@ -53,3 +53,15 @@
         transform:rotate(360deg);
     }
 }
+
+::-webkit-scrollbar {
+    /*width: 0;  !* Remove scrollbar space *!*/
+    background: transparent;  /* Optional: just make scrollbar invisible */
+    width: 10px;
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: #efefef;
+    border-radius: 105px;
+    width: 3px;
+}

@@ -26,23 +26,32 @@ export default class Wrapper extends React.Component {
                             <i className="las la-dice-d6"></i> Random Album
                         </span>
                     </div>
-                    <div className="flex flex-col flex-1 overflow-y-auto">
-                        <Routes>
-                            <Route
-                                path="/"
-                                element={<Albums randomize={this.state.random} />}
-                            >
-                                <Route
-                                    exact
-                                    path=":folder"
-                                    element={<Albums randomize={this.state.random} />}
-                                />
-                            </Route>
-                            <Route
-                                exact path="/wantlist"
-                                element={<Wantlist />}
+                    <div className="flex flex-col flex-1 pr-4">
+                        <div className="my-4">
+                            <input
+                                placeholder="search collection..."
+                                className="w-full p-2 text-xl rounded shadow-inner"
+                                onChange={e => this.setState({filterText: e.target.value})}
                             />
-                        </Routes>
+                        </div>
+                        <div className="overflow-y-auto overflow-x-hidden">
+                            <Routes>
+                                <Route
+                                    path="/"
+                                    element={<Albums filterText={this.state.filterText} randomize={this.state.random} />}
+                                >
+                                    <Route
+                                        exact
+                                        path=":folder"
+                                        element={<Albums filterText={this.state.filterText} randomize={this.state.random} />}
+                                    />
+                                </Route>
+                                <Route
+                                    exact path="/wantlist"
+                                    element={<Wantlist />}
+                                />
+                            </Routes>
+                        </div>
                     </div>
                 </div>
             </div>

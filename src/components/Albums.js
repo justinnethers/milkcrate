@@ -49,8 +49,8 @@ export default function Albums(props) {
     }
 
     const albumList = albums.filter((album) => {
-        if (filterText) {
-            return album.search.toLowerCase().includes(filterText.toLowerCase());
+        if (props.filterText) {
+            return album.search.toLowerCase().includes(props.filterText.toLowerCase());
         } else {
             return albums;
         }
@@ -88,7 +88,7 @@ export default function Albums(props) {
                     <div className="record"></div>
                 </div>
                 <div className="h-100 px-4" key={folder}>
-                    <div className="flex flex-wrap -mx-2 lg:-mx-4">
+                    <div className="grid grid-cols-2 gap-x-6 gap-y-6">
                         {albumList}
                     </div>
                 </div>
@@ -97,16 +97,10 @@ export default function Albums(props) {
         )
     }
     return (
-        <div className="h-100 px-4" key={folder}>
-            <div className="my-4">
-                <input
-                    placeholder="search collection..."
-                    className="w-full p-2 text-xl rounded shadow-inner"
-                    onChange={e => setFilterText(e.target.value)}
-                />
-            </div>
+        <div className="h-100" key={folder}>
+
             {/*{pager}*/}
-            <div className="flex flex-wrap -mx-2 lg:-mx-4">
+            <div className="grid grid-cols-2 gap-x-6 gap-y-6">
                 {albumList}
             </div>
             {/*{pager}*/}

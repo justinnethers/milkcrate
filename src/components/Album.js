@@ -102,7 +102,7 @@ export default function Album(props) {
     }
 
     let albumMarkup = (
-        <div className="p-4 lg:p-8 bg-gray-900 text-white rounded shadow-lg m-2 lg:m-4 cursor-pointer" onClick={() => getAlbumInfo()}>
+        <div className="p-4 lg:p-8 bg-gray-900 text-white rounded shadow-lg cursor-pointer" onClick={() => getAlbumInfo()}>
             <div className="flex space-x-2">
                 <div className="flex-1 flex flex-col">
                     <div className="text-4xl">{props.album.title}</div>
@@ -123,7 +123,7 @@ export default function Album(props) {
 
     if (loading) {
         return (
-            <div className="w-full md:w-1/2 xl:w-1/2">
+            <div className="w-full">
                 <div className="absolute inset-0 bg-gray-900 bg-opacity-80 flex justify-center items-center">
                     <div className="record"></div>
                 </div>
@@ -133,7 +133,7 @@ export default function Album(props) {
         )
     }
     return (
-        <div className="w-full md:w-1/2 xl:w-1/2">
+        <div className="w-full">
             {albumMarkup}
             {albumModal}
         </div>
