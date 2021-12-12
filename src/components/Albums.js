@@ -96,7 +96,7 @@ export default function Albums(props) {
         )
     }
     return (
-        <div className="h-100" key={folder}>
+        <div className="h-100 pb-12" key={folder}>
 
             {/*{pager}*/}
             <div className="grid grid-cols-2 gap-x-6 gap-y-6">

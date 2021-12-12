@@ -35,8 +35,8 @@ export default class Wantlist extends React.Component {
             )
         }
         return (
-            <div className="h-100 px-4">
-                <div className="flex flex-wrap -mx-2 lg:-mx-4">
+            <div className="h-100 pb-12">
+                <div className="grid grid-cols-2 gap-x-6 gap-y-6">
                     {albumList}
                 </div>
             </div>
