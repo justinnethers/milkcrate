@@ -1,3 +1,5 @@
+import {CSSTransitionGroup} from 'react-transition-group';
+
 export default function AlbumModal(props) {
 
     if (props.album) {
@@ -42,7 +44,12 @@ export default function AlbumModal(props) {
                         event.stopPropagation();
                     }}
                 >
-                    <div
+                    <CSSTransitionGroup
+                        transitionName="fade-in"
+                        transitionAppear={true}
+                        transitionAppearTimeout={500}
+                        transitionEnterTimeout={500}
+                        transitionLeaveTimeout={3000}
                         className="relative bg-gray-900 w-full h-full overflow-auto rounded-lg shadow-lg p-4 md:p-12 text-white cursor-default"
                         onClick={(e) => e.stopPropagation()}
                     >
@@ -83,7 +90,7 @@ export default function AlbumModal(props) {
                             </div>
                             {videoWrapper}
                         </div>
-                    </div>
+                    </CSSTransitionGroup>
                 </div>
             </div>
         );

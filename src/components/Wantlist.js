@@ -1,6 +1,7 @@
 import React from 'react';
 import Album from "./Album";
 import {getWantlist} from "../api";
+import {CSSTransitionGroup} from 'react-transition-group';
 
 export default class Wantlist extends React.Component {
     constructor(props) {
@@ -36,9 +37,16 @@ export default class Wantlist extends React.Component {
         }
         return (
             <div className="h-100 pb-12">
-                <div className="grid grid-cols-2 gap-x-6 gap-y-6">
+                <CSSTransitionGroup
+                    transitionName="fade-in"
+                    transitionAppear={true}
+                    transitionAppearTimeout={500}
+                    transitionEnterTimeout={500}
+                    transitionLeaveTimeout={300}
+                    className="grid grid-cols-2 gap-x-6 gap-y-6"
+                >
                     {albumList}
-                </div>
+                </CSSTransitionGroup>
             </div>
         );
     }

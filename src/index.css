@@ -65,3 +65,29 @@
     border-radius: 105px;
     width: 3px;
 }
+
+.fade-in-enter {
+    opacity: 0.01;
+}
+
+.fade-in-enter.fade-in-enter-active {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+}
+
+.fade-in-leave {
+    opacity: 1;
+}
+
+.fade-in-leave.fade-in-leave-active {
+    opacity: 0.01;
+    transition: opacity 300ms ease-in;
+}
+.fade-in-appear {
+    opacity: 0.01;
+}
+
+.fade-in-appear.fade-in-appear-active {
+    opacity: 1;
+    transition: opacity .5s ease-in;
+}

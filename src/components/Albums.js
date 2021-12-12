@@ -2,6 +2,7 @@ import {getAlbums} from "../api";
 import Album from "./Album";
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
+import {CSSTransitionGroup} from 'react-transition-group';
 
 export default function Albums(props) {
 
@@ -99,9 +100,16 @@ export default function Albums(props) {
         <div className="h-100 pb-12" key={folder}>
 
             {/*{pager}*/}
-            <div className="grid grid-cols-2 gap-x-6 gap-y-6">
+            <CSSTransitionGroup
+                transitionName="fade-in"
+                transitionAppear={true}
+                transitionAppearTimeout={500}
+                transitionEnterTimeout={500}
+                transitionLeaveTimeout={300}
+                className="grid grid-cols-2 gap-x-6 gap-y-6"
+            >
                 {albumList}
-            </div>
+            </CSSTransitionGroup>
             {/*{pager}*/}
         </div>
     );
