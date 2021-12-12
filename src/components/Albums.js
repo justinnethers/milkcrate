@@ -8,7 +8,6 @@ export default function Albums(props) {
     const [albums, setAlbums] = useState([]);
     const [loading, setLoading] = useState(false);
     const [pagination, setPagination] = useState(false);
-    const [filterText, setFilterText] = useState('');
     const [randomAlbum, setRandomAlbum] = useState(false);
 
     const params = useParams();
