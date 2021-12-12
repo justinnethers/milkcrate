@@ -23,7 +23,7 @@ export const getAlbumRelease = (id) => {
         .then(res => {
             console.log('album release', res);
             return res;
-        })
+        });
 }
 
 export const getFolders = (params) => {

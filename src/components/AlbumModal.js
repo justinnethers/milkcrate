@@ -4,8 +4,8 @@ export default function AlbumModal(props) {
         const tracklist = props.album.tracklist?.map(track => {
             return (
                 <li className="font-light text-xl md:text-2xl"><span className="font-medium">{track.position}</span>  &nbsp;{track.title}</li>
-            )
-        })
+            );
+        });
 
         let videoWrapper = <span></span>
         if (props.album.videos?.length) {
@@ -15,14 +15,14 @@ export default function AlbumModal(props) {
                     <div className="p-2">
                         <iframe src={link}></iframe>
                     </div>
-                )
-            })
+                );
+            });
 
             videoWrapper = (
                 <div className="flex -m-2 flex-wrap bg-gray-700 rounded-lg shadow-inner justify-center items-center p-6">
                     {videos}
                 </div>
-            )
+            );
         }
 
         const images = props.album.images?.map(image => {
@@ -30,7 +30,7 @@ export default function AlbumModal(props) {
                 <div className="p-2">
                     <img src={image.uri150} className="rounded" />
                 </div>
-            )
+            );
         })
 
         return (
@@ -86,7 +86,7 @@ export default function AlbumModal(props) {
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 
     return <span></span>;

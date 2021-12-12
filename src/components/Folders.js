@@ -22,7 +22,7 @@ export default function Folders(props) {
     if (!folders.length) {
         return (
             <span></span>
-        )
+        );
     }
     // const {folders} = props;
     const foldersList = folders.map(folder => {
@@ -38,7 +38,7 @@ export default function Folders(props) {
                 <span>
                     <i className="text-black las la-record-vinyl"></i>&nbsp;
                 </span>
-            )
+            );
         }
         return (
             <NavLink
@@ -57,7 +57,7 @@ export default function Folders(props) {
                     {icon}{folder.name} <span className="text-xl">({folder.count})</span>
                 </div>
             </NavLink>
-        )
+        );
     })
 
     return (

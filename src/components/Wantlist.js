@@ -32,7 +32,7 @@ export default class Wantlist extends React.Component {
                 <div className="absolute inset-0 bg-gray-900 bg-opacity-80 flex justify-center items-center">
                     <div className="record"></div>
                 </div>
-            )
+            );
         }
         return (
             <div className="h-100 pb-12">

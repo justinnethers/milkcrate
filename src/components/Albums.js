@@ -93,7 +93,7 @@ export default function Albums(props) {
                 </div>
             </div>
 
-        )
+        );
     }
     return (
         <div className="h-100 pb-12" key={folder}>
