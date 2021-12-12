@@ -7,14 +7,23 @@ export default function AlbumModal(props) {
             )
         })
 
-        const videos = props.album.videos?.map(video => {
-            let link = video.uri.replace("//www.youtube.com/watch?v=", "//www.youtube.com/embed/");
-            return (
-                <div className="p-2">
-                    <iframe src={link}></iframe>
+        let videoWrapper = <span></span>
+        if (props.album.videos?.length) {
+            const videos = props.album.videos?.map(video => {
+                let link = video.uri.replace("//www.youtube.com/watch?v=", "//www.youtube.com/embed/");
+                return (
+                    <div className="p-2">
+                        <iframe src={link}></iframe>
+                    </div>
+                )
+            })
+
+            videoWrapper = (
+                <div className="flex -m-2 flex-wrap bg-gray-700 rounded-lg shadow-inner justify-center items-center p-6">
+                    {videos}
                 </div>
             )
-        })
+        }
 
         const images = props.album.images?.map(image => {
             return (
@@ -72,9 +81,7 @@ export default function AlbumModal(props) {
                                     </div>
                                 </div>
                             </div>
-                            <div className="flex -m-2 flex-wrap bg-gray-700 rounded-lg shadow-inner justify-center items-center p-6">
-                                {videos}
-                            </div>
+                            {videoWrapper}
                         </div>
                     </div>
                 </div>
